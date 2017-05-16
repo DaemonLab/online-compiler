@@ -4,9 +4,9 @@
 	<title>Ayrus-Compiler</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="#" class="navbar-brand">AYRUS<span style="font-size:10px;">&nbspThe compiler</span></a>
+				<a href="#" class="navbar-brand">AYRUS<span style="font-size:10px;">&nbsp The compiler</span></a>
 			</div>
 			<!-- list items -->
 			<div class="collapse navbar-collapse" id="mainNavBar">
@@ -33,27 +33,67 @@
 			</div>		
 		</div>	
 	</nav>
+
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-4">
+		<h4>HTML</h4>
+		<textarea  rows="20" id="text_html" style="width:100%;resize: none;background-color: #f0f0f0;" spellcheck="false"></textarea>
+	</div>
+
+	<div class="col-md-4">
+		<h4>CSS</h4>
+		<textarea  rows="20" id="text_css" style="width:100%;resize: none;background-color: #f0f0f0" spellcheck="false"></textarea>
+	</div>
+
+	<div class="col-md-4">
+		<h4>JavaScript</h4>
+		<textarea  rows="20" id="text_js" style="width:100%;resize: none;background-color: #f0f0f0" spellcheck="false"></textarea>
+	</div>
+		
+	</div>
+		
+	</div>
+
+
+
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-6">
-				<h4>Start writing you HTML,CSS,JavaScript here:</h4>
-				<textarea  rows="25" id="editor" style="width:100%;resize: none;background-color: #f0f0f0" spellcheck="false"></textarea>
-				<button class="btn btn-info" type="button" onclick="myfun()" >Run</button>
-			</div>
-			<div class="col-md-6">
 				<h4>Output:</h4>
-				<iframe height="510px" width="100%" srcdoc='' id="comp"></iframe>
-			</div>
-		</div>
+				<iframe height="510px" width="100%" srcdoc='' id="comp" style="resize: both"></iframe>
 	</div>
 
 
 
 <script>
-	function myfun(){
-		var code = document.getElementById("editor").value;
+var text_html,text_css,text_js,code;
+
+	$("#text_html").on("input",null,null,function(){
+		text_html = document.getElementById("text_html").value;
+		text_css = document.getElementById("text_css").value;
+		text_css = '<style>'.concat(text_css,'</style>');
+		text_js = document.getElementById("text_js").value;
+		code = text_html.concat(text_css,'<style type="text","/","css">"',text_css,"</style><script>",text_js,"</","script>")
 		document.getElementById("comp").srcdoc = code;
-	}
+	});
+	$("#text_css").on("input",null,null,function(){
+		text_html = document.getElementById("text_html").value;
+		text_css = document.getElementById("text_css").value;
+		text_css = '<style>'.concat(text_css,'</style>');
+		text_js = document.getElementById("text_js").value;
+		code = text_html.concat(text_css,'<style type="text","/","css">"',text_css,"</","style><script>",text_js,"</","script>")
+		document.getElementById("comp").srcdoc = code;
+
+	});
+	$("#text_js").on("input",null,null,function(){
+		text_html = document.getElementById("text_html").value;
+		text_css = document.getElementById("text_css").value;
+		text_css = '<style>'.concat(text_css,'</style>');
+		text_js = document.getElementById("text_js").value;
+		code = text_html.concat(text_css,'<style type="text","/","css">"',text_css,"</style><script>",text_js,"</","script>")
+		document.getElementById("comp").srcdoc = code;
+
+	});
+
 </script>
 	
 </body>
